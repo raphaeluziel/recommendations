@@ -42,6 +42,8 @@ def submit_responses(request):
     answers.question05 = request.POST["question05"]
     answers.question06 = request.POST["question06"]
 
+    answers.file_upload = request.FILES['work']
+
     answers.save()
 
     context = {
