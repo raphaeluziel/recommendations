@@ -48,7 +48,9 @@ def submit_responses(request):
     answers.question05 = request.POST["question05"]
     answers.question06 = request.POST["question06"]
 
-    answers.file_upload = request.FILES['work']
+    # If user uploaded a file, then add it to the database
+    if len(request.FILES) != 0:
+        answers.file_upload = request.FILES['work']
 
     answers.save()
 
