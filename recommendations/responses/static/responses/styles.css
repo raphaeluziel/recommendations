@@ -1,0 +1,17 @@
+body {
+  background-color: #eeeeff;
+  max-width: 760px;
+  margin: 40px auto;
+}
+h1, h4{
+  text-align:center;
+}
+.dueDate{
+  color: green;
+  font-weight: bold;
+  font-size: 125%;
+  text-align: center;
+}
+.questions{
+  font-style: italic;
+}
