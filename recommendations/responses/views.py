@@ -1,10 +1,16 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
+from django.conf import settings
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from .models import Responses
+
+# using SendGrid's Python Library
+# https://github.com/sendgrid/sendgrid-python
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 # Create your views here.
 
