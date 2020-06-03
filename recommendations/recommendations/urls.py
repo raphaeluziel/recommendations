@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+import private_storage.urls
+
 urlpatterns = [
     path('', include('responses.urls')),
     path('users/', include('users.urls')),

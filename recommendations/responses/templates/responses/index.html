@@ -5,12 +5,7 @@
 {% endblock %}
 
 {% block body %}
-  <h1>Mr. Uziel</h1>
-  <h4>Recommendation Letter Questionnaire</h4>
-  <p class="dueDate">Due June 30</p>
-
-  <hr>
-  <a href="{% url 'logout' %}">logout</a>
+  <p class="dueDate">Questionnaire is Due June 30</p>
 
   <p>
     <b>If</b> I agreed to write you a recommendation for college, <b>then</b> fill out the form below as best you can.  I write letters over the summer, and will not have time come September.
@@ -50,10 +45,9 @@
     <textarea name="question05" rows="2" cols="80">{{ student_response.question05 }}</textarea><br>&nbsp;
 
     <div class="questions">
-      Is there a homework assignment, or lab (that you have with you, obviously) that you would like to upload that demonstrates the quality of your work? If so, upload it.
+      Is there a homework assignment (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, upload it (Maximum File Size is 10 MB).
     </div>
-    <input type="file" name="work" /> {{ student_response.file_upload }}<br>&nbsp;
-
+    <input type="file" name="work" /><span class="file">{{ student_response.file_upload }}</span><br><span class="error">{{ message }}</span><br>&nbsp;
 
     <div class="questions">
       Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!

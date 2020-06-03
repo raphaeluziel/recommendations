@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'private_storage',
     'responses.apps.ResponsesConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',

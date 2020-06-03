@@ -1,0 +1,49 @@
+{% extends "responses/base.html" %}
+
+{% block title %}
+  Mr. Uziel's College Recommendation Page
+{% endblock %}
+
+{% block body %}
+  <b>Student</b>: {{ student.first_name }} {{ student.last_name }}<br>
+  <b>Date last updated:</b> {{ students_answers.timestamp }}<br>
+  <b>Status:</b> {{ students_answers.status }}
+  <br><br>
+
+  <div class="questions">
+    Describe any class demonstrations you may have participated in.  What was your role?
+  </div>
+  <div class="answers">{{ students_answers.question01 }}</div><br>
+
+  <div class="questions">
+    Are there any interesting questions you remember asking in class, or after class? Be specific.
+  </div>
+  <div class="answers">{{ students_answers.question02 }}</div><br>
+
+  <div class="questions">
+    Was there something, a concept, that you learned in class that you put to use, or observed in your life and activities outside of class. Again, be specific.
+  </div>
+  <div class="answers">{{ students_answers.question03 }}</div><br>
+
+  <div class="questions">
+    Were there any science extracurricular activities you participated in while in high school? Is there a program you will be attending this summer? Be specific with the name and dates of the program.
+  </div>
+  <div class="answers">{{ students_answers.question04 }}</div><br>
+
+  <div class="questions">
+    If you already have a good idea as to what you want to study in college, or a career goal for the future, let me know what it is, and how sure you are of this. It's okay to put undecided, or multiple answers.
+  </div>
+  <div class="answers">{{ students_answers.question05 }}</div><br>
+
+  <div class="questions">
+    Is there a homework assignment (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, upload it (Maximum File Size is 10 MB).
+  </div>
+  <span style="color:blue">{{ students_answers.file_upload }}</span><br>&nbsp;
+
+  <div class="questions">
+    Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!
+  </div>
+  <div class="answers">{{ students_answers.question06 }}</div>
+
+
+{% endblock %}

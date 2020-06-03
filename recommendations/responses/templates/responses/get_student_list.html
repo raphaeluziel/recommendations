@@ -1,0 +1,13 @@
+{% extends "responses/base.html" %}
+
+{% block title %}
+  Mr. Uziel's College Recommendation Page
+{% endblock %}
+
+{% block body %}
+  <ol>
+    {% for student in students %}
+      <li><a href="{% url 'get_student_responses' student.id %}">{{ student.first_name }} {{ student.last_name }}</a></li>
+    {% endfor %}
+  </ol>
+{% endblock %}
