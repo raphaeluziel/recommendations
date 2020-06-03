@@ -32,10 +32,17 @@ def index(request):
     if Responses.objects.filter(student=request.user):
         answers = Responses.objects.get(student=request.user)
 
+        # If so, check whether she has uploaded a file
+        if answers.file_upload is not None:
+            head, tail = os.path.split(str(answers.file_upload))
+            fileName = tail
+
         context = {
-            "student_response": answers or None
+            "student_response": answers or None,
+            "fileName": fileName or None
             }
 
+    # Student is a new user, or has not submitted anything yet
     else:
         context = {}
 
@@ -52,54 +59,56 @@ def submit_responses(request):
 
     message = ""
 
-    # Check if student has already submitted a form
-    if Responses.objects.filter(student=request.user):
-        answers = Responses.objects.get(student=request.user)
-
-    # Of not, create an empty database row for student
-    else:
-        answers = Responses(student=request.user)
-
-    # Add and or replace answers
-    answers.question01 = request.POST["question01"]
-    answers.question02 = request.POST["question02"]
-    answers.question03 = request.POST["question03"]
-    answers.question04 = request.POST["question04"]
-    answers.question05 = request.POST["question05"]
-    answers.question06 = request.POST["question06"]
-    answers.save()
-
-    # If user uploaded a file, then add it to the database
-    if len(request.FILES) != 0:
-
-        # Do not add files over 10MB to database, send user back to questionnaire page
-        if request.FILES['work'].size > 10485760:
-            message = "File size must be less than 10 MB"
-            context = {
-                "student_response": Responses.objects.get(student=request.user),
-                "message": message
-                }
-            return render(request, "responses/index.html", context, message)
-
-        # File is looking good go to confirmation page
-        else:
-            message = "File uploaded succesfully"
-            answers.file_upload = request.FILES['work']
-
-            answers.save()
-
-    list_of_items_for_email = ''
-
     # User clicks submit responses in homepage
     if request.method == "POST":
 
-        email_content = "Your questionnaire sent to recommendations@raphaeluziel.net confirmed"
+        # Check if student has already submitted a form
+        if Responses.objects.filter(student=request.user):
+            answers = Responses.objects.get(student=request.user)
 
-        email_subject = "Your questionnaire sent to recommendations@raphaeluziel.net confirmed"
+        # If not, create an empty database row for student
+        else:
+            answers = Responses(student=request.user)
+
+        # Add and or replace answers
+        answers.question01 = request.POST["question01"]
+        answers.question02 = request.POST["question02"]
+        answers.question03 = request.POST["question03"]
+        answers.question04 = request.POST["question04"]
+        answers.question05 = request.POST["question05"]
+        answers.question06 = request.POST["question06"]
+        answers.status = 'Submitted'
+        answers.save()
+
+        # If user uploaded a file, then add it to the database
+        if len(request.FILES) != 0:
+
+            # Do not add files over 10MB to database, send user back to questionnaire page
+            if request.FILES['work'].size > 10485760:
+                message = "File size must be less than 10 MB"
+                context = {
+                    "student_response": Responses.objects.get(student=request.user),
+                    "message": message
+                    }
+                return render(request, "responses/index.html", context, message)
+
+            # File is looking good go to confirmation page
+            else:
+                message = "File uploaded succesfully"
+                answers.file_upload = request.FILES['work']
+                head, tail = os.path.split(str(request.FILES['work']))
+                answers.file_location = head
+                answers.save()
+
+        list_of_items_for_email = ''
+
+        email_content = "Hi " + request.user.first_name + ", " + "<br><br>I\'ve received your responses.  If you wish to change your answers, or check on the status of the recommendation feel free to go back to <a href='https://recommendations.raphaeluziel.net'>https://recommendations.raphaeluziel.net</a>. You may update your answers until the status of your recommendation changes to 'written'.<br><br>Best of luck,<br><br>Mr. Uziel"
+
+        email_subject = "Recommendation form received"
 
         # The following uses SendGrid to send a confirmation email to the user
         message = Mail(
-            from_email='recommendations@raphaeluziel.net',
+            from_email='ruziel@hsas-lehman.org',
             to_emails=request.user.email,
             subject=email_subject,
             html_content=email_content
@@ -113,7 +122,9 @@ def submit_responses(request):
         except Exception as e:
             print(e)
 
-    return render(request, "responses/confirmation.html")
+        return render(request, "responses/confirmation.html")
+
+    return HttpResponseRedirect(reverse('index'))
 
 
 @login_required()

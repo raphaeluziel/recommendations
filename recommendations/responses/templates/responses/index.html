@@ -5,7 +5,21 @@
 {% endblock %}
 
 {% block body %}
-  <p class="dueDate">Questionnaire is Due June 30</p>
+
+  {% if student_response.status != "Written" %}
+    <p class="dueDate">Questionnaire is Due June 30</p>
+  {% endif %}
+
+  <b>Status</b>:
+    <span style="color: darkred;">
+      {% if student_response.status is not null %}
+        {{ student_response.status }}
+      {% else %}
+        Not Submitted
+      {% endif %}
+    </span><br><br>
+
+  {% if student_response.status != "Written" %}
 
   <p>
     <b>If</b> I agreed to write you a recommendation for college, <b>then</b> fill out the form below as best you can.  I write letters over the summer, and will not have time come September.
@@ -47,7 +61,7 @@
     <div class="questions">
       Is there a homework assignment (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, upload it (Maximum File Size is 10 MB).
     </div>
-    <input type="file" name="work" /><span class="file">{{ student_response.file_upload }}</span><br><span class="error">{{ message }}</span><br>&nbsp;
+    <input type="file" name="work" /><span class="file">{{ fileName }}</span><br><span class="error">{{ message }}</span><br>&nbsp;
 
     <div class="questions">
       Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!
@@ -56,5 +70,44 @@
 
     <button type="submit" class="btn btn-info">Submit Responses</button>
   </form>
+
+  {% else %}
+
+  <div class="questions">
+    Describe any class demonstrations you may have participated in.  What was your role?
+  </div>
+  <div class="answers">{{ student_response.question01 }}</div><br>
+
+  <div class="questions">
+    Are there any interesting questions you remember asking in class, or after class? Be specific.
+  </div>
+  <div class="answers">{{ student_response.question02 }}</div><br>
+
+  <div class="questions">
+    Was there something, a concept, that you learned in class that you put to use, or observed in your life and activities outside of class. Again, be specific.
+  </div>
+  <div class="answers">{{ student_response.question03 }}</div><br>
+
+  <div class="questions">
+    Were there any science extracurricular activities you participated in while in high school? Is there a program you will be attending this summer? Be specific with the name and dates of the program.
+  </div>
+  <div class="answers">{{ student_response.question04 }}</div><br>
+
+  <div class="questions">
+    If you already have a good idea as to what you want to study in college, or a career goal for the future, let me know what it is, and how sure you are of this. It's okay to put undecided, or multiple answers.
+  </div>
+  <div class="answers">{{ student_response.question05 }}</div><br>
+
+  <div class="questions">
+    Is there a homework assignment (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, upload it (Maximum File Size is 10 MB).
+  </div>
+  <span style="color:blue">{{ fileName }}</span><br>&nbsp;
+
+  <div class="questions">
+    Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!
+  </div>
+  <div class="answers">{{ student_response.question06 }}</div>
+
+  {% endif %}
 
 {% endblock %}

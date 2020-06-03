@@ -20,6 +20,9 @@
     </div>
 
     <div class="nav">
+      {% if user.is_authenticated %}
+        <span style="color:blue;">{{ user }}</span>
+      {% endif %}
       <a href="{% url 'index' %}">home</a>
 
       {% if user.is_authenticated %}
