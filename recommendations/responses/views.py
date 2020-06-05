@@ -15,8 +15,9 @@ from .models import Responses
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-import os
+import datetime
 
+import os
 
 # Create your views here.
 
@@ -157,8 +158,16 @@ def get_student_responses(request, student_id):
         This is the page where I will see the student responses
     """
 
-    student = User.objects.get(pk=student_id)
-    students_answers = Responses.objects.get(student_id=student_id)
+    try:
+        student = User.objects.get(pk=student_id)
+    except:
+        return render(request, "responses/error.html", {"message": "Student Does Not Exist"})
+
+    # Check if student submitted any answers at all
+    try:
+        students_answers = Responses.objects.get(student_id=student_id)
+    except:
+        students_answers = None
 
     context = {
         "student": student,
