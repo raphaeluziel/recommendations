@@ -38,9 +38,15 @@ def index(request):
             head, tail = os.path.split(str(answers.file_upload))
             fileName = tail
 
+        # If so, check whether she has uploaded a file
+        if answers.photo_upload is not None:
+            head_photo, tail_photo = os.path.split(str(answers.photo_upload))
+            photoName = tail_photo
+
         context = {
             "student_response": answers or None,
-            "fileName": fileName or None
+            "fileName": fileName or None,
+            "photoName": photoName or None
             }
 
     # Student is a new user, or has not submitted anything yet
@@ -84,22 +90,41 @@ def submit_responses(request):
         # If user uploaded a file, then add it to the database
         if len(request.FILES) != 0:
 
-            # Do not add files over 10MB to database, send user back to questionnaire page
-            if request.FILES['work'].size > 10485760:
-                message = "File size must be less than 10 MB"
-                context = {
-                    "student_response": Responses.objects.get(student=request.user),
-                    "message": message
-                    }
-                return render(request, "responses/index.html", context, message)
+            # Did upload a file from computer?
+            if request.FILES.get('work'):
 
-            # File is looking good go to confirmation page
-            else:
-                message = "File uploaded succesfully"
-                answers.file_upload = request.FILES['work']
-                head, tail = os.path.split(str(request.FILES['work']))
-                answers.file_location = head
-                answers.save()
+                # Do not add files over 10MB to database, send user back to questionnaire page
+                if request.FILES['work'].size > 10485760:
+                    message = "File size must be less than 10 MB"
+                    context = {
+                        "student_response": Responses.objects.get(student=request.user),
+                        "message": message
+                        }
+                    return render(request, "responses/index.html", context, message)
+
+                # File is looking good go to confirmation page
+                else:
+                    answers.file_upload = request.FILES['work']
+                    head, tail = os.path.split(str(request.FILES['work']))
+                    answers.save()
+
+            # Did upload a file from computer?
+            if request.FILES.get('photo'):
+
+                # Do not add files over 10MB to database, send user back to questionnaire page
+                if request.FILES['photo'].size > 10485760:
+                    message = "File size must be less than 10 MB"
+                    context = {
+                        "student_response": Responses.objects.get(student=request.user),
+                        "message": message
+                        }
+                    return render(request, "responses/index.html", context, message)
+
+                # File is looking good go to confirmation page
+                else:
+                    answers.photo_upload = request.FILES['photo']
+                    head, tail = os.path.split(str(request.FILES['photo']))
+                    answers.save()
 
         list_of_items_for_email = ''
 

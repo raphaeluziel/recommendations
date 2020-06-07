@@ -1,5 +1,6 @@
 server {
     listen 80;
+    client_max_body_size 10M;
     server_name recommendations.raphaeluziel.net;
 
     location = /favicon.ico { access_log off; log_not_found off; }
