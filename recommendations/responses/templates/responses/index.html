@@ -59,10 +59,9 @@
     <textarea name="question05" rows="2" cols="80">{{ student_response.question05 }}</textarea><br>&nbsp;
 
     <div class="questions">
-      Is there a homework assignment (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, upload it (Maximum File Size is 10 MB).
-    </div><br>
-    File from your device: <input type="file" name="work" /><span class="file">{{ fileName }}</span><br><span class="error">{{ message }}</span><br>
-    Take a photo and upload it: <input type="file" name="photo" accept="image/*" capture="environment"><span class="file">{{ photoName }}</span><br><span class="error">{{ message }}</span><br>&nbsp;
+      Is there any work (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, take a photo or upload from your device using the button below (Maximum File Size is 10 MB).
+    </div>
+    <input type="file" name="work" /><span class="file">{{ fileName }}</span><br><span class="error">{{ message }}</span><br>&nbsp;
 
     <div class="questions">
       Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!

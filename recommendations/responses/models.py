@@ -21,7 +21,7 @@ class Responses(models.Model):
         ('Pending', 'Pending'),
         ('Written', 'Written')
     ]
-    student = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
     question01 = models.CharField(max_length=2500, default='', blank=True)
     question02 = models.CharField(max_length=2500, default='', blank=True)
     question03 = models.CharField(max_length=2500, default='', blank=True)
@@ -31,7 +31,6 @@ class Responses(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='not submitted')
     file_upload = models.FileField(upload_to=generate_filename, max_length=254, blank=True, null=True)
-    photo_upload = models.FileField(upload_to=generate_filename, max_length=254, blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.student)
