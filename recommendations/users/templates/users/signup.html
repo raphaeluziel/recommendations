@@ -1,53 +1,91 @@
 {% extends "responses/base.html" %}
 
+{% load static %}
+
 {% block title %}
   Recommendation Questionnaire
 {% endblock %}
 
 {% block body %}
-  <h2>Sign up</h2>
 
-  <form method="post">
-    {% csrf_token %}
+  <p class = "warning">
+    Have you asked me to write you a letter yet?  If not ask me!
+  </p>
+  <p>My email: <a href="mailto:raphaeluziel@gmail.com">raphaeluziel@gmail .com</a></p>
+  <button id="asked" class="btn btn-info">Yes, I've asked already!</button>
+  <button id="browse" class="btn btn-info">I just want to see what questions the form has!</button>
+  <button id="login" class="btn btn-info">Login</button>
+  <br>
 
-    <table class="user_forms">
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-        <div class='error'>{{form.errors.username}}</div>
-      </tr>
-      <tr>
-        <td>{{ form.first_name.label_tag }}</td>
-        <td>{{ form.first_name }}</td>
-        <div class='error'>{{form.errors.first_name}}</div>
-      </tr>
-      <tr>
-        <td>{{ form.last_name.label_tag }}</td>
-        <td>{{ form.last_name }}</td>
-        <div class='error'>{{form.errors.last_name}}</div>
-      </tr>
-      <tr>
-        <td>{{ form.email.label_tag }}</td>
-        <td>{{ form.email }}</td>
-        <div class='error'>{{form.errors.email}}</div>
-      </tr>
-      <tr>
-        <td>{{ form.password1.label_tag }}</td>
-        <td>{{ form.password1 }}</td>
-        <div class='error'>{{form.errors.password1}}</div>
-      </tr>
-      <tr>
-        <td>Confirm:</td>
-        <td>{{ form.password2 }}</td>
-        <div class='error'>{{form.errors.password2}}</div>
-      </tr>
-    </table>
+  <div id="questions">
 
-    <button type="submit" class="btn btn-info">Sign up</button>
+    <hr>
+    <p>
+      To make my letter a great letter, remind me about specific things you did that made you stand out. Do not include things I already know like “I participated a lot” or “I did well on tests” or “I always did my homework”. <b>One specific anecdote (story) you tell me is worth a hundred general statements!</b>
+    </p>
 
-  </form>
+    <ol>
+      <li>Describe any class demonstrations you may have participated in. What was your role?</li>
+      <li>Are there any interesting questions you remember asking in class, or after class? Be specific.</li>
+      <li>Was there something, a concept, that you learned in class that you put to use, or observed in your life and activities outside of class. Again, be specific.</li>
+      <li>Were there any science extracurricular activities you participated in while in high school? Is there a program you will be attending this summer? Be specific with the name and dates of the program.</li>
+      <li>If you already have a good idea as to what you want to study in college, or a career goal for the future, let me know what it is, and how sure you are of this. It's okay to put undecided, or multiple answers.</li>
+      <li>Is there any work (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, take a photo or upload from your device using the button below (Maximum File Size is 10 MB).</li>
+      <li>Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!</li>
+    </ol>
+    <hr>
+  </div>
+
+  <div id="signup">
+    <hr>
+    <h2>Sign up</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <table class="user_forms">
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+          <div class='error'>{{form.errors.username}}</div>
+        </tr>
+        <tr>
+          <td>{{ form.first_name.label_tag }}</td>
+          <td>{{ form.first_name }}</td>
+          <div class='error'>{{form.errors.first_name}}</div>
+        </tr>
+        <tr>
+          <td>{{ form.last_name.label_tag }}</td>
+          <td>{{ form.last_name }}</td>
+          <div class='error'>{{form.errors.last_name}}</div>
+        </tr>
+        <tr>
+          <td>{{ form.email.label_tag }}</td>
+          <td>{{ form.email }}</td>
+          <div class='error'>{{form.errors.email}}</div>
+        </tr>
+        <tr>
+          <td>{{ form.password1.label_tag }}</td>
+          <td>{{ form.password1 }}</td>
+          <div class='error'>{{form.errors.password1}}</div>
+        </tr>
+        <tr>
+          <td>Confirm:</td>
+          <td>{{ form.password2 }}</td>
+          <div class='error'>{{form.errors.password2}}</div>
+        </tr>
+      </table>
+
+      <button type="submit" class="btn btn-info">Sign up</button>
+
+    </form>
+
+  </div>
 
   <br>Already have an account?
   <a href="{% url 'login' %}">Log in</a>
+
+  <link rel="stylesheet" href="{% static 'users/styles.css' %}">
+  <script type="text/javascript" src="{% static  'users/signup.js' %}"></script>
 
 {% endblock %}
