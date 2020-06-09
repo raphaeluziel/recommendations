@@ -8,18 +8,20 @@
 
 {% block body %}
 
-  <p class = "warning">
-    Have you asked me to write you a letter yet?  If not ask me!
-  </p>
-  <p>My email: <a href="mailto:raphaeluziel@gmail.com">raphaeluziel@gmail .com</a></p>
-  <button id="asked" class="btn btn-info">Yes, I've asked already!</button>
-  <button id="browse" class="btn btn-info">I just want to see what questions the form has!</button>
-  <button id="login" class="btn btn-info">Login</button>
+  <div class = "warning">
+    Have you asked me to write you a letter yet?<br>
+    If not ask me before filling out this form!<br>
+  </div>
+  <div>
+    My email: <a href="mailto:raphaeluziel@gmail.com">raphaeluziel@gmail .com</a><br>&nbsp;
+  </div>
+
+  <button id="asked" class="btn btn-info signup_buttons">Yes, I've asked!</button>
+  <button id="browse" class="btn btn-info signup_buttons">Show questionnaire</button>
+  <button id="login" class="btn btn-info signup_buttons">Login</button>
   <br>
 
   <div id="questions">
-
-    <hr>
     <p>
       To make my letter a great letter, remind me about specific things you did that made you stand out. Do not include things I already know like “I participated a lot” or “I did well on tests” or “I always did my homework”. <b>One specific anecdote (story) you tell me is worth a hundred general statements!</b>
     </p>
@@ -33,7 +35,6 @@
       <li>Is there any work (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, take a photo or upload from your device using the button below (Maximum File Size is 10 MB).</li>
       <li>Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!</li>
     </ol>
-    <hr>
   </div>
 
   <div id="signup">
@@ -82,10 +83,11 @@
 
   </div>
 
-  <br>Already have an account?
-  <a href="{% url 'login' %}">Log in</a>
+  <!--
+    <br>Already have an account?
+    <a href="{% url 'login' %}">Log in</a>
+  -->
 
-  <link rel="stylesheet" href="{% static 'users/styles.css' %}">
   <script type="text/javascript" src="{% static  'users/signup.js' %}"></script>
 
 {% endblock %}
