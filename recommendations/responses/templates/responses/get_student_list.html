@@ -20,7 +20,14 @@
         Submissions
         <ol>
           {% for response in responses %}
-            <li><a href="{% url 'get_student_responses' response.student.id %}">{{ response.student.first_name }} {{ response.student.last_name }}</a> <span class='submitted'> {{ response.timestamp }}</span></li>
+            <li>
+              <a href="{% url 'get_student_responses' response.student.id %}">
+                {{ response.student.first_name }} {{ response.student.last_name }}
+              </a>
+              <span class='submitted'>
+                {% load tz %}{% timezone "America/New_York" %}{{ response.timestamp }}{% endtimezone %}
+              </span>
+            </li>
           {% endfor %}
         </ol>
       </div>

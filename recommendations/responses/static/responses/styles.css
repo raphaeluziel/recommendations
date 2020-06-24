@@ -59,6 +59,9 @@ h1, h4{
   background-color: white;
   padding: 20px;
   margin: 12px 4px 0px 4px;
+  font-size: 90%;
+  color: #666;
+  border-radius: 4px;
 }
 @media (max-width: 600px) {
   body{

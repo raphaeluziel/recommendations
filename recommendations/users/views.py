@@ -7,6 +7,9 @@ from .forms import SignUpForm
 # Create your views here.
 
 def signup(request):
+    # If user has already logged in skip the signup form
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
