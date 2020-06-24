@@ -140,13 +140,20 @@ def get_student_list(request):
 
     """
         This will display a list of all students in the database with links
-        to their individual response pages
+        to their individual response pages.  The first column will list all
+        students who have registered, the second column all who have gone the
+        next step and submitted a response
     """
 
-    students = User.objects.all().order_by('id')
+    # get a list of all students who regitered
+    students = User.objects.filter(is_staff=False).order_by('id')
+
+    # Get a lit of all students who responded
+    responses = Responses.objects.filter(student__is_staff=False).order_by('timestamp')
 
     context = {
-        "students": students
+        "students": students,
+        "responses": responses
     }
     return render(request, "responses/get_student_list.html", context)
 

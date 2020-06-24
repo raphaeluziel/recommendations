@@ -5,9 +5,26 @@
 {% endblock %}
 
 {% block body %}
-  <ol>
-    {% for student in students %}
-      <li><a href="{% url 'get_student_responses' student.id %}">{{ student.first_name }} {{ student.last_name }}</a></li>
-    {% endfor %}
-  </ol>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        Students registered
+        <ol>
+          {% for student in students %}
+            <li><a href="{% url 'get_student_responses' student.id %}">{{ student.first_name }} {{ student.last_name }}</a></li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="col-sm">
+        Submissions
+        <ol>
+          {% for response in responses %}
+            <li><a href="{% url 'get_student_responses' response.student.id %}">{{ response.student.first_name }} {{ response.student.last_name }}</a> <span class='submitted'> {{ response.timestamp }}</span></li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

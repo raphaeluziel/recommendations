@@ -45,16 +45,20 @@ h1, h4{
 .rest{
   padding: 10px;
 }
+.signup_buttons{
+  margin: 0px 2px 4px 2px;
+}
+.submitted{
+  font-size: 80%;
+  color: darkred;
+}
+.warning{
+  color: red;
+}
 #questions{
   background-color: white;
   padding: 20px;
   margin: 12px 4px 0px 4px;
-}
-.signup_buttons{
-  margin: 0px 2px 4px 2px;
-}
-.warning{
-  color: red;
 }
 @media (max-width: 600px) {
   body{
