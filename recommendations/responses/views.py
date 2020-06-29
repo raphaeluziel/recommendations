@@ -146,7 +146,7 @@ def get_student_list(request):
     """
 
     # get a list of all students who regitered
-    students = User.objects.filter(is_staff=False).order_by('id')
+    students = User.objects.filter(is_staff=False).order_by('last_name')
 
     # Get a lit of all students who responded
     responses = Responses.objects.filter(student__is_staff=False).order_by('timestamp')
