@@ -28,7 +28,7 @@
     <br><br>
     <b>One specific anecdote (story) you tell me is worth a hundred general statements!</b>
 
-    <p><b class="error">TIP: Answer questions on a word document, then copy and paste so you don't lose your work in case of an error!</b></p>
+    <p><b class="error">TIP: Answer questions on a word document, then copy and paste so you don't lose your work in case of an error!  Keep answers brief! Answers are limited to 2500 characters.</b></p>
   </p>
 
   <hr>
@@ -38,27 +38,27 @@
     <div class="questions">
       Describe any class demonstrations you may have participated in.  What was your role?
     </div>
-    <textarea name="question01" rows="8" cols="80">{{ student_response.question01 }}</textarea><br>&nbsp;
+    <textarea name="question01" rows="8" cols="80" maxlength="4800">{{ student_response.question01 }}</textarea><br>&nbsp;
 
     <div class="questions">
       Are there any interesting questions you remember asking in class, or after class? Be specific.
     </div>
-    <textarea name="question02" rows="8" cols="80">{{ student_response.question02 }}</textarea><br>&nbsp;
+    <textarea name="question02" rows="8" cols="80" maxlength="4800">{{ student_response.question02 }}</textarea><br>&nbsp;
 
     <div class="questions">
       Was there something, a concept, that you learned in class that you put to use, or observed in your life and activities outside of class. Again, be specific.
     </div>
-    <textarea name="question03" rows="8" cols="80">{{ student_response.question03 }}</textarea><br>&nbsp;
+    <textarea name="question03" rows="8" cols="80" maxlength="4800">{{ student_response.question03 }}</textarea><br>&nbsp;
 
     <div class="questions">
       Were there any science extracurricular activities you participated in while in high school? Is there a program you will be attending this summer? Be specific with the name and dates of the program.
     </div>
-    <textarea name="question04" rows="8" cols="80">{{ student_response.question04 }}</textarea><br>&nbsp;
+    <textarea name="question04" rows="8" cols="80" maxlength="4800">{{ student_response.question04 }}</textarea><br>&nbsp;
 
     <div class="questions">
       If you already have a good idea as to what you want to study in college, or a career goal for the future, let me know what it is, and how sure you are of this. It's okay to put undecided, or multiple answers.
     </div>
-    <textarea name="question05" rows="2" cols="80">{{ student_response.question05 }}</textarea><br>&nbsp;
+    <textarea name="question05" rows="2" cols="80" maxlength="4800">{{ student_response.question05 }}</textarea><br>&nbsp;
 
     <div class="questions">
       Is there any work (perhaps with my comments) that you would like to upload that demonstrates the quality of your work? If so, take a photo or upload from your device using the button below (Maximum File Size is 10 MB).
@@ -68,7 +68,7 @@
     <div class="questions">
       Is there anything else you think made you stand out that was not addressed in the previous questions? If so tell me!
     </div>
-    <textarea name="question06" rows="8" cols="80">{{ student_response.question06 }}</textarea><br>
+    <textarea name="question06" rows="8" cols="80" maxlength="4800">{{ student_response.question06 }}</textarea><br>
 
     <button type="submit" class="btn btn-info">Submit Responses</button>
   </form>
