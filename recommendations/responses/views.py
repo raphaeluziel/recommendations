@@ -151,9 +151,20 @@ def get_student_list(request):
     # Get a lit of all students who responded
     responses = Responses.objects.filter(student__is_staff=False).order_by('status', 'timestamp')
 
+    # How many letters did I write?
+    total = responses.count()
+    written = responses.filter(status='Written').count()
+    if total > 0:
+        percentage = round((100 * written / total), 1)
+    else:
+        percentage = 0
+
     context = {
         "students": students,
-        "responses": responses
+        "responses": responses,
+        "total": total,
+        "written": written,
+        "percentage": percentage
     }
     return render(request, "responses/get_student_list.html", context)
 

@@ -19,12 +19,15 @@
       </div>
       -->
       <div class="col-sm-12">
-        Submissions
+        <!--Submissions-->
         <ol>
           {% for response in responses %}
             <li>
               {% if response.status == 'Written' %}
-                <b style="color:lightgreen;">Done!</b>
+                <b style="color:lightgreen;">Written</b>
+                {% if response.status != 'Uploaded' %}
+                  <b style="color:pink;">Not Uploaded</b>
+                {% endif %}
               {% endif %}
               <a href="{% url 'get_student_responses' response.student.id %}">
                 {{ response.student.first_name }} {{ response.student.last_name }}
@@ -35,6 +38,13 @@
             </li>
           {% endfor %}
         </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Written: <b>{{ written }}</b> out of <b>{{ total }}</b> or <b>{{ percentage }}%</b>
       </div>
     </div>
   </div>

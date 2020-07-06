@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-  <b>Student</b>: {{ student.last_name }}, {{ student.first_name }}<br>
+  <b>Student</b>: {{ student.first_name }} {{ student.last_name }}<br>
   <b>Date last updated:</b> {% load tz %}{% timezone "America/New_York" %}{{ students_answers.timestamp }}{% endtimezone %}<br>
   <b>Status:</b> {{ students_answers.status }}
   <br><br>

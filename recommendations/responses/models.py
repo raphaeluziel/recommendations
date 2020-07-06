@@ -16,10 +16,9 @@ def generate_filename(self, filename):
 
 class Responses(models.Model):
     STATUS_CHOICES = [
-        ('Not Submitted', 'Not Submitted'),
         ('Submitted', 'Submitted'),
-        ('Pending', 'Pending'),
-        ('Written', 'Written')
+        ('Written', 'Written'),
+        ('Uploaded', 'Uploaded')
     ]
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     question01 = models.CharField(max_length=5000, default='', blank=True)
@@ -29,8 +28,8 @@ class Responses(models.Model):
     question05 = models.CharField(max_length=5000, default='', blank=True)
     question06 = models.CharField(max_length=5000, default='', blank=True)
     timestamp = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='not submitted')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Submitted')
     file_upload = models.FileField(upload_to=generate_filename, max_length=254, blank=True, null=True)
 
     def __str__(self):
-        return "{}".format(self.student)
+        return "{} {}".format(self.student.first_name, self.student.last_name)
