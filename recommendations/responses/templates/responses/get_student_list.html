@@ -8,6 +8,7 @@
 
   <div class="container">
     <div class="row">
+      <!--
       <div class="col-sm-4">
         Students registered
         <ol>
@@ -16,11 +17,15 @@
           {% endfor %}
         </ol>
       </div>
-      <div class="col-sm-8">
+      -->
+      <div class="col-sm-12">
         Submissions
         <ol>
           {% for response in responses %}
             <li>
+              {% if response.status == 'Written' %}
+                <b style="color:lightgreen;">Done!</b>
+              {% endif %}
               <a href="{% url 'get_student_responses' response.student.id %}">
                 {{ response.student.first_name }} {{ response.student.last_name }}
               </a>
