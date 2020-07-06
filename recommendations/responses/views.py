@@ -149,7 +149,7 @@ def get_student_list(request):
     students = User.objects.filter(is_staff=False).order_by('last_name')
 
     # Get a lit of all students who responded
-    responses = Responses.objects.filter(student__is_staff=False).order_by('timestamp')
+    responses = Responses.objects.filter(student__is_staff=False).order_by('status', 'timestamp')
 
     context = {
         "students": students,
