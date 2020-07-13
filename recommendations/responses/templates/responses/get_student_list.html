@@ -23,6 +23,9 @@
         <ol>
           {% for response in responses %}
             <li>
+              {% if response.status == "Not Submitted" %}
+                <b style="color:purple;">Am I writing this?</b>
+              {% endif %}
               {% if response.status == 'Written' %}
                 <b style="color:lightgreen;">Written</b>
                 {% if response.status != 'Uploaded' %}
@@ -44,7 +47,9 @@
     <div class="row">
       <div class="col-sm-12">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Written: <b>{{ written }}</b> out of <b>{{ total }}</b> or <b>{{ percentage }}%</b>
+        Written: <b>{{ written }}</b> out of <b>{{ total }}</b> or <b>{{ percentage }}%</b><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Not Written: <b>{{ not_done }}</b>
       </div>
     </div>
   </div>

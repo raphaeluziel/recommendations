@@ -164,7 +164,8 @@ def get_student_list(request):
         "responses": responses,
         "total": total,
         "written": written,
-        "percentage": percentage
+        "percentage": percentage,
+        "not_done": total - written
     }
     return render(request, "responses/get_student_list.html", context)
 

@@ -16,6 +16,7 @@ def generate_filename(self, filename):
 
 class Responses(models.Model):
     STATUS_CHOICES = [
+        ('Not Submitted', 'Not Submitted'),
         ('Submitted', 'Submitted'),
         ('Written', 'Written'),
         ('Uploaded', 'Uploaded')
