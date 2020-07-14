@@ -8,7 +8,6 @@ from datetime import datetime
 
 # Create your models here.
 
-
 def generate_filename(self, filename):
     file_location = "%s/%s" % (self.student, filename)
     return file_location
@@ -33,4 +32,4 @@ class Responses(models.Model):
     file_upload = models.FileField(upload_to=generate_filename, max_length=254, blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.student.first_name, self.student.last_name)
+        return "{} {} [{}]".format(self.student.first_name, self.student.last_name, self.status)
