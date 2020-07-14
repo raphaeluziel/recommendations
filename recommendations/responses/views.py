@@ -67,10 +67,6 @@ def submit_responses(request):
         if Responses.objects.filter(student=request.user):
             answers = Responses.objects.get(student=request.user)
 
-        # If not, create an empty database row for student
-        else:
-            answers = Responses(student=request.user)
-
         # Add and or replace answers
         answers.question01 = request.POST["question01"]
         answers.question02 = request.POST["question02"]
@@ -193,3 +189,22 @@ def get_student_responses(request, student_id):
         "students_answers": students_answers
     }
     return render(request, "responses/get_student_responses.html", context)
+
+
+@staff_member_required
+def set_to_written(request):
+
+    """
+        Once I've written the letter, this button, located on the student
+        response page that I only see, will change the status
+    """
+
+    # Get reference to the response object of that student
+    try:
+        response = Responses.objects.get(student_id=request.POST['student_id'])
+        response.status = request.POST['status']
+        response.save()
+    except:
+        return render(request, "responses/error.html", {"message": "Something went wrong!"})
+
+    return HttpResponseRedirect(reverse('get_student_list'))

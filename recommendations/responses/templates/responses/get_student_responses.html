@@ -45,5 +45,12 @@
   </div>
   <div class="answers">{{ students_answers.question06 }}</div>
 
+  <form action="{% url 'set_to_written' %}" method="post">
+    {% csrf_token %}
+    <input type="number" name="student_id" value="{{ student.id }}" hidden>
+    <input type="text" name="status" value="Written" hidden><br>
+    <button type="submit" class="btn btn-success">Set to Written!</button>
+  </form>
+
 
 {% endblock %}

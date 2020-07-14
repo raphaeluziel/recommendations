@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("submit_responses", views.submit_responses, name="submit_responses"),
     path("get_student_list", views.get_student_list, name="get_student_list"),
-    path("get_student_responses/<int:student_id>", views.get_student_responses, name="get_student_responses")
+    path("get_student_responses/<int:student_id>", views.get_student_responses, name="get_student_responses"),
+    path("set_to_written", views.set_to_written, name="set_to_written")
 ]
