@@ -18,7 +18,8 @@ class Responses(models.Model):
         ('Not Submitted', 'Not Submitted'),
         ('Submitted', 'Submitted'),
         ('Written', 'Written'),
-        ('Uploaded', 'Uploaded')
+        ('Uploaded', 'Uploaded'),
+        ('CommonApp', 'CommonApp')
     ]
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     question01 = models.CharField(max_length=5000, default='', blank=True)

@@ -27,10 +27,13 @@
                 <b style="color:purple;">Am I writing this?</b>
               {% endif %}
               {% if response.status == 'Written' %}
-                <b style="color:lightgreen;">Written</b>
-                {% if response.status != 'Uploaded' %}
-                  <b style="color:pink;">Not Uploaded</b>
-                {% endif %}
+                <b style="color:lightgreen;">NOT Uploaded</b>
+              {% endif %}
+              {% if response.status == 'Uploaded' %}
+                <b style="color:pink;">Common App Needed</b>
+              {% endif %}
+              {% if response.status == 'CommonApp' %}
+                <b style="color:red ;">DONE!</b>
               {% endif %}
               <a href="{% url 'get_student_responses' response.student.id %}">
                 {{ response.student.first_name }} {{ response.student.last_name }}

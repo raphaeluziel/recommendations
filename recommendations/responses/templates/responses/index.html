@@ -6,16 +6,33 @@
 
 {% block body %}
 
-  {% if student_response.status != "Written" %}
+  {% if student_response.status != "Written" and student_response.status != "Uploaded" and student_response.status != "CommonApp" %}
     <p class="dueDate">Questionnaire is Due June 30</p>
   {% endif %}
 
   <b>Status</b>:
     <span style="color: darkred;">
+      {% if student_response.status == "Uploaded" or student_response.status == "CommonApp" %}
+        Written
+      {% else %}
         {{ student_response.status }}
+      {% endif %}
     </span><br><br>
 
-  {% if student_response.status != "Written" %}
+    <i style=color:darkred;>
+    {% if student_response.status == 'Uploaded' %}
+      Your letter has been written and uploaded to Naviance.  Once you meet with your counselor and have the FERPA waiver done, I will complete your Common App.<br><br>
+    {% endif %}
+    {% if student_response.status == 'CommonApp' %}
+      Everything is done; my letter and the common app I completed are ready to be sent to your colleges by your counselor.<br><br>
+    {% endif %}
+    </i>
+
+    <span class='submitted'>
+      {% load tz %}{% timezone "America/New_York" %}{{ response.timestamp }}{% endtimezone %}
+    </span>
+
+  {% if student_response.status != "Written" and student_response.status != "Uploaded" and student_response.status != "CommonApp" %}
 
   <p>
     <b>If</b> I agreed to write you a recommendation for college, <b>then</b> fill out the form below as best you can.  I write letters over the summer, and will not have time come September.

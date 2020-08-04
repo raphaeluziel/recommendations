@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
+from django.db.models import Q
+
 from .models import Responses
 
 # using SendGrid's Python Library
@@ -149,7 +151,7 @@ def get_student_list(request):
 
     # How many letters did I write?
     total = responses.count()
-    written = responses.filter(status='Written').count()
+    written = responses.filter(Q(status='Written') | Q(status="Uploaded") | Q(status="CommonApp")).count()
     if total > 0:
         percentage = round((100 * written / total), 1)
     else:
